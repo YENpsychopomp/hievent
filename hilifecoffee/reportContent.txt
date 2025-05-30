@@ -1,0 +1,6 @@
+報告內容記錄:
+1. 介紹Django與MVC架構 https://ithelp.ithome.com.tw/articles/10317622
+2. docstring方便維護
+3. 提出Lighhtsail與EC2的差別及優缺點，並說明棄用Lightsail轉用EC2的原因。 https://inbound.technology/%E7%82%BA%E4%BB%80%E9%BA%BC%E4%B8%8D%E8%A9%B2%E7%94%A8-aws-lightsail%EF%BC%9F%E4%BB%96%E6%9C%89%E5%93%AA%E4%BA%9B%E5%9A%B4%E9%87%8D%E7%9A%84%E7%BC%BA%E9%BB%9E%EF%BC%9F/
+4. Django CSRF 原理 https://www.youtube.com/watch?v=0BOFeQCEfGU
+5. Django 的 ORM 技術可以防止網站受到 SQL injection

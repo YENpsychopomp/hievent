@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>{{title}}</title>
+		{% load static %}
+		<style>
+  		  body::before {
+  		    content: "";
+  		    background-image: url("{% static 'img/background.png' %}");
+  		    background-size: cover;
+  		    background-position: center;
+  		    position: fixed;
+  		    inset: 0;
+  		    z-index: -1;
+  		    opacity: 0.5;
+  		  }
+  		</style>
+		<link rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+		<link rel="stylesheet" href="{% static 'css/exchange.css'%}">
+	</head>
+	<body class="min-h-screen flex items-center justify-center linearbg">
+		<input type="hidden" id="csrf_token" value="{{ csrf_token }}">
+		<div
+			class="backdrop-blur-md bg-white/30 p-8 rounded-2xl shadow-2xl w-full max-w-3xl">
+			<h1
+				class="text-4xl font-bold text-center text-white mb-8 drop-shadow">兌換商品</h1>
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+				<img id="product-img" src alt="商品圖片"
+					class="w-full rounded-lg shadow-lg" />
+				<div class="space-y-4 text-white">
+					<h2 class="text-2xl font-semibold drop-shadow" id="product-name"></h2>
+					<p class="drop-shadow" id="product-description"></p>
+					<p class="text-sm text-gray-200 drop-shadow" id="product-time"></p>
+					<p class="drop-shadow" id="product-stock"></p>
+					<div class="flex space-x-4">
+						<button id="redeemBtn"
+							class="bg-green-500 hover:bg-green-600 text-white font-semibold px-5 py-2 rounded-full shadow">
+							立即兌換
+						</button>
+						<button id="giftBtn"
+							class="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-5 py-2 rounded-full shadow">
+							送禮好友
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Modal 共用樣式 -->
+		<div id="modalOverlay"
+			class="fixed inset-0 bg-gradient-to-br from-black/70 via-black/60 to-black/80 hidden items-center justify-center z-50 transition-all duration-300">
+			<div id="redeemModal"
+				class="hidden bg-white/95 backdrop-blur-lg p-8 rounded-3xl shadow-2xl w-full max-w-4xl mx-auto relative border border-blue-100 text-[#2563eb]">
+				<button onclick="closeModal()"
+					class="absolute top-4 right-4 text-gray-400 hover:text-red-500 text-3xl font-bold transition-colors duration-200">&times;</button>
+
+				<h3
+					class="text-3xl md:text-4xl font-extrabold mb-8 text-center text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-400 drop-shadow-lg">
+					立即兌換
+				</h3>
+
+				<div
+					class="flex flex-col md:flex-row justify-center items-center gap-6 w-full">
+					<div
+						class="transition-transform duration-300 hover:scale-105 bg-white/90 p-4 rounded-2xl shadow-lg border border-gray-200">
+						<img src alt="Transaction Barcode"
+							class="w-full max-w-[520px] h-auto object-contain"
+							id="transactionBarcode" />
+					</div>
+					<div
+						class="transition-transform duration-300 hover:scale-105 bg-white/90 p-4 rounded-2xl shadow-lg border border-gray-200">
+						<img src alt="Order Barcode"
+							class="w-full max-w-[520px] h-auto object-contain" id="orderBarcode" />
+					</div>
+				</div>
+
+				<p
+					class="text-sm md:text-base text-blue-700 text-center font-medium rounded-lg px-6 py-3 mt-8 bg-gradient-to-r from-indigo-100 via-blue-100 to-cyan-100 shadow-inner">
+					請將上方條碼提供給店員進行兌換。
+				</p>
+			</div>
+
+			<div id="giftModal" class="hidden modal-box">
+				<button onclick="closeModal()" class="close-btn">&times;</button>
+				<h3 class="modal-title">送禮好友</h3>
+				<form id="giftForm" class="modal-form">
+					<div class="form-group">
+						<label>朋友如何稱呼您</label>
+						<input type="text" name="sender" class="form-input" id="sender" />
+					</div>
+					<div class="form-group">
+						<label>您如何稱呼朋友</label>
+						<input type="text" name="receiver" class="form-input" id="receiver" />
+					</div>
+					<div class="form-group">
+						<label>你想送她多少</label>
+						<input type="number" name="amount" class="form-input" min="1"
+							placeholder="例如：1、2、3..." step="1" value="1" id="amount" />
+					</div>
+					<div class="form-group">
+						<label>想對他說的話</label>
+						<textarea name="text" class="form-textarea" id="message"></textarea>
+					</div>
+					<div class="text-right">
+						<button type="submit" class="submit-btn" id="sharebtn">確定</button>
+					</div>
+				</form>
+			</div>
+		</div>
+		<script src="https://cdn.tailwindcss.com"></script>
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/color-thief/2.3.2/color-thief.umd.js"></script>
+		<script
+			src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+		<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+		<script type="text/javascript">
+    		const staticPathByExchange = "{% static 'img/' %}";
+    	</script>
+		<script src="{% static 'js/exchange.js'%}"></script>
+	</body>
+</html>

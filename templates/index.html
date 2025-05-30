@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Chichi">
+        <title>{{title}}</title>
+        {% load static %}
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+            integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
+            crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Noto+Sans+TC:wght@100..900&display=swap"
+            rel="stylesheet">
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"
+            integrity="sha512-1cK78a1o+ht2JcaW6g8OXYwqpev9+6GqOkz9xmBN9iUUhIndKtxwILGWYOSibOKjLsEdjyjZvYDq/cZwNeak0w=="
+            crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+        <link rel="stylesheet" href="{% static 'css/style.css'%}">
+    </head>
+    <body>
+        <input type="hidden" id="csrf_token" value="{{ csrf_token }}">
+        <section class="info" id="info">
+            <div class="navbar navbars">
+                <img src="{% static 'img/來送禮LOGO.SVG' %}" alt="來送禮">
+                <ul id="nav">
+                    <li class="current">美式咖啡</li>
+                    <li>拿鐵咖啡</li>
+                    <li>風味調飲</li>
+                    <li>鮮奶/豆米漿</li>
+                    <li>飲料/瓶裝水</li>
+                    <li>茶葉蛋/水果</li>
+                    <li>鮮食/輕食</li>
+                    <li>麵包</li>
+                    <li>泡麵</li>
+                    <li>零食/糖果/巧克力</li>
+                    <li>冷凍/冰品</li>
+                    <li>營養保健/其他</li>
+                </ul>
+                <div class="hamburger-menu">
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                </div>
+            </div>
+            <div class="hamburger-pop navbars">
+                <ul id="nav">
+                    <li>美式咖啡</li>
+                    <li>拿鐵咖啡</li>
+                    <li>風味調飲</li>
+                    <li>鮮奶/豆米漿</li>
+                    <li>飲料/瓶裝水</li>
+                    <li>茶葉蛋/水果</li>
+                    <li>鮮食/輕食</li>
+                    <li>麵包</li>
+                    <li>泡麵</li>
+                    <li>零食/糖果/巧克力</li>
+                    <li>冷凍/冰品</li>
+                    <li>營養保健/其他</li>
+                </ul>
+            </div>
+            <div class="product-grid" id="product-grid"></div>
+            <div class="pay-alert">
+                <div class="page ani">
+                    <div class="cancel">
+                        <i class="fa-solid fa-circle-xmark"></i>
+                    </div>
+                    <div class="container slider">
+                        <div class="options fade active">
+                            <div data-value="1">
+                                <img
+                                    src="{% static '/img/flat-illustration-cash-counter_203633-8606_Resize Image.png' %}"
+                                    alt="Cash Option">
+                                <span class="pay-tip">臨櫃付款</span>
+                            </div>
+                            <div data-value="2">
+                                <img
+                                    src="{% static '/img/LINE-Pay(v)_W238_n_Resize Image.png' %}"
+                                    {% static 'img/00019584S.jpg' %}
+                                    alt="LINE Pay Option">
+                                <span class="pay-tip">Line pay付款</span>
+                            </div>
+                        </div>
+                        <div class="email fade">
+                            <input type="email" placeholder="請輸入您的Email" id="email">
+                            <small class="email-purpose">※我們將使用您的 Email 傳送兌換通知與禮物資訊，不會用於其他用途。</small>
+                        </div>
+                        <div class="barcode fade">
+                            <img src="" alt="barcode">
+                        </div>
+                    </div>
+                    <div class="btn-container">
+                        <button class="prev-btn gray">上一步</button>
+                        <button class="next-btn">下一步</button>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <section></section>
+        <section></section>
+
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/sweetalert2@11.14.4/dist/sweetalert2.all.min.js"></script>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.7/axios.min.js"
+            integrity="sha512-DdX/YwF5e41Ok+AI81HI8f5/5UsoxCVT9GKYZRIzpLxb8Twz4ZwPPX+jQMwMhNQ9b5+zDEefc+dcvQoPWGNZ3g=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"
+            integrity="sha512-A7AYk1fGKX6S2SsHywmPkrnzTZHrgiVT7GcQkLGDe2ev0aWb8zejytzS8wjo7PGEXKqJOrjQ4oORtnimIRZBtw=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://unpkg.com/@studio-freight/lenis"></script>
+        <script type="text/javascript">
+            const staticPath = "{% static 'img/' %}";
+        </script>
+        <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+        <script src="{% static 'js/index.js'%}"></script>
+    </body>
+</html>
