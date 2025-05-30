@@ -90,7 +90,6 @@ hilifecoffee/
    ```bash
    python manage.py runserver
    ```
-   預設於 http://127.0.0.1:8000/ 提供服務。
 
 ## 資料庫設計
 
