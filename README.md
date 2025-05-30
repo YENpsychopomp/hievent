@@ -66,7 +66,6 @@ hilifecoffee/
 1. **環境需求**
    - Python 3.8 以上
    - MySQL 5.7 以上
-   - Node.js（如需前端打包）
    - pip 套件管理工具
 
 2. **安裝步驟**
